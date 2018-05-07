@@ -1,0 +1,20 @@
+{
+    "credentialId": "jenkins-service",
+    "bitbucketUrl": "http://bitbucket.liatr.io",
+    "pipelineLibrary": "https://github.com/liatrio/pipeline-library",
+    "gitRepos": [
+        {
+            "name": "credit-cards",
+            "project": "pnc"
+        }
+    ],
+    "gitProjects": [
+            {
+                "name": "pnc",
+                "excludes": []
+            },
+            {
+                "name": "OMA"
+            }
+    ]
+}

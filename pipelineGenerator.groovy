@@ -24,7 +24,7 @@ gitProjects.each {
                 name 'Pipeline-Library'
             }
             node / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries' / 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' / retriever (class:'org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever') / scm (class:'jenkins.plugins.git.GitSCMSource') {
-                remote 'https://github.com/liatrio/pipeline-library'
+                remote parsedJson.pipelineLibrary
                 credentialsId parsedJson.credentialId
             }
         }

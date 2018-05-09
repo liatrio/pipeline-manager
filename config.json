@@ -2,13 +2,15 @@
     "credentialId": "62bbdfb9-a435-417e-8325-d90756d62d93",
     "bitbucketUrl": "http://bitbucket.liatr.io",
     "pipelineLibrary": "https://github.com/liatrio/pipeline-library",
-    "gitRepos": [],
     "gitProjects": [
             {
                 "name": "pnc"
             },
             {
                 "name": "~ben"
+            },
+            {
+                "name": "FFA"
             }
     ]
 }

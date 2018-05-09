@@ -1,7 +1,7 @@
 {
-    "credentialId": "62bbdfb9-a435-417e-8325-d90756d62d93",
+    "credentialId": "bitbucket",
     "bitbucketUrl": "http://bitbucket.liatr.io",
-    "pipelineLibrary": "https://github.com/liatrio/pipeline-library",
+    "pipelineLibraries": ["https://github.com/liatrio/pipeline-library.git", "https://github.com/liatrio/stride-pipeline-library.git"],
     "gitProjects": [
             {
                 "name": "pnc"

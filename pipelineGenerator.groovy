@@ -18,15 +18,32 @@ gitProjects.each {
                 credentialsId parsedJson.credentialId
                 repoOwner bitbucketProject.name
             }
-            node / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries' / 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' {
-                defaultVersion 'master'
-                implicit 'true'
-                name 'Pipeline-Library'
+            parsedJson.pipelineLibraries.each {
+                libraryUrl ->
+                def gitRepoName = (libraryUrl =~ /[a-z,-]*(?:\.git)/)[0] - '.git'
+                node / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries' << 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' {
+                        retriever (class:'org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever') / scm (class:'jenkins.plugins.git.GitSCMSource') {
+                        remote libraryUrl
+                        credentialsId parsedJson.credentialId
+                    }
+                    defaultVersion 'master'
+                    implicit 'true'
+                    name gitRepoName
+                }
             }
-            node / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries' / 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' / retriever (class:'org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever') / scm (class:'jenkins.plugins.git.GitSCMSource') {
-                remote parsedJson.pipelineLibrary
-                credentialsId parsedJson.credentialId
-            }
+            // node / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries' / 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' / retriever (class:'org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever') / scm (class:'jenkins.plugins.git.GitSCMSource') {
+            //     remote parsedJson.pipelineLibrary
+            //     credentialsId parsedJson.credentialId
+            // }
+            // node / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries' << 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' {
+            //     defaultVersion 'master'
+            //     implicit 'true'
+            //     name 'Pipeline-Library2'
+            // }
+            // node / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries' / 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' / retriever (class:'org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever') / scm (class:'jenkins.plugins.git.GitSCMSource') {
+            //     remote "https://github.com/liatrio/stride-pipeline-library"
+            //     credentialsId parsedJson.credentialId
+            // }
         }
     }
 }

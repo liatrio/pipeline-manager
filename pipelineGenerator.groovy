@@ -1,8 +1,6 @@
 import groovy.json.JsonSlurper
 
-
 def parsedJson = new JsonSlurper().parseText(readFileFromWorkspace('config.json'))
-// def gitRepos = parsedJson.gitRepos
 def gitLocation = parsedJson.bitbucketUrl
 def gitProjects = parsedJson.gitProjects
 gitProjects.each {

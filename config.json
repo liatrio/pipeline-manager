@@ -1,0 +1,10 @@
+{
+    "credentialId": "bitbucket",
+    "bitbucketUrl": "http://bitbucket.liatr.io",
+    "pipelineLibraries": ["https://github.com/liatrio/pipeline-library.git", "https://github.com/liatrio/stride-pipeline-library.git"],
+    "gitProjects": [
+            {
+                "name": "~ben"
+            }
+    ]
+}

@@ -7,7 +7,5 @@
                 "name": "Dojo",
                 "projects": ["pipeline-library", "jenkins"]
             }
-    ],
-    "gitProjects": {
-    }
+    ]
 }

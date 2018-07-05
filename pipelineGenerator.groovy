@@ -2,10 +2,11 @@ import groovy.json.JsonSlurper
 
 def parsedJson = new JsonSlurper().parseText(readFileFromWorkspace('config.json'))
 def gitLocation = parsedJson.bitbucketUrl
-def gitProjects = parsedJson.gitProjects
-gitProjects.each {
+def projectFolders = parsedJson.folders
+projectFolders.each {
+    folder(it.name)
     bitbucketProject->
-    organizationFolder(bitbucketProject.name) {
+    organizationFolder(it.name/bitbucketProject.name) {
         configure {
             node ->
             node / 'navigators' / 'com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMNavigator' / 'traits' / 'com.cloudbees.jenkins.plugins.bitbucket.BranchDiscoveryTrait' {
